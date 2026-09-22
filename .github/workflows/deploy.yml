@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -35,11 +35,17 @@ jobs:
       - name: Install Dependencies
         run: npm ci || npm install
 
-      - name: Build Website
-        run: npm run build
-
       - name: Setup Pages
+        id: pages
         uses: actions/configure-pages@v5
+        continue-on-error: true
+
+      - name: Build Website
+        id: build
+        env:
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          VITE_BASE_PATH: ${{ steps.pages.outputs.base_path }}/
+        run: npm run build
 
       - name: Upload Pages Artifact
         uses: actions/upload-pages-artifact@v3
@@ -49,3 +55,11 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+        continue-on-error: true
+
+      - name: Deploy to gh-pages branch (Fallback for branch-based deployment)
+        uses: peaceiris/actions-gh-pages@v4
+        if: always() && steps.build.outcome == 'success'
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist

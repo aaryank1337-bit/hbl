@@ -16,7 +16,12 @@ import { birthdayContent } from '../content/birthdayLetter';
 try {
   const base = import.meta.env.BASE_URL || './';
   const cleanBase = base.endsWith('/') ? base : `${base}/`;
-  pdfjsLib.GlobalWorkerOptions.workerSrc = `${cleanBase}assets/pdf.worker.min.js`;
+  const workerRelativePath = `${cleanBase}assets/pdf.worker.min.js`;
+  if (typeof window !== 'undefined') {
+    pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(workerRelativePath, window.location.href).href;
+  } else {
+    pdfjsLib.GlobalWorkerOptions.workerSrc = workerRelativePath;
+  }
 } catch (e) {
   console.warn('PDF.js worker initialization notice:', e);
 }
@@ -52,7 +57,11 @@ export const PhotobookSection: React.FC<PhotobookSectionProps> = ({
   const getPdfUrl = useCallback(() => {
     const base = import.meta.env.BASE_URL || './';
     const cleanBase = base.endsWith('/') ? base : `${base}/`;
-    return `${cleanBase}${photobook.pdfPath.replace(/^\//, '')}`;
+    const relPath = `${cleanBase}${photobook.pdfPath.replace(/^\//, '')}`;
+    if (typeof window !== 'undefined') {
+      return new URL(relPath, window.location.href).href;
+    }
+    return relPath;
   }, [photobook.pdfPath]);
 
   // Load PDF Document

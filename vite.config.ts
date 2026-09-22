@@ -3,9 +3,7 @@ import react from '@vitejs/plugin-react';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  // Using relative base path './' ensures all assets load properly on GitHub Pages subpaths
-  // as well as custom domains without requiring hardcoded repository names.
-  base: process.env.VITE_BASE_PATH || './',
+  base: '/hbl/',
   plugins: [react()],
   build: {
     outDir: 'dist',
@@ -16,5 +14,5 @@ export default defineConfig({
   server: {
     port: 3000,
     open: false,
-  }
+  },
 });

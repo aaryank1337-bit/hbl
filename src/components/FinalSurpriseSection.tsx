@@ -134,7 +134,7 @@ export const FinalSurpriseSection: React.FC<FinalSurpriseSectionProps> = ({
               fontWeight: 600,
             }}
           >
-            Forever & Always
+            From: Aaryan, Your Forever & Always
           </p>
         </div>
 

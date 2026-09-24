@@ -89,19 +89,19 @@ export const birthdayContent: BirthdayContent = {
 
   // Screen 4: The Birthday Letter
   letter: {
-    salutation: "To my favourite person...",
+    salutation: "To my future wife...",
     paragraphs: [
-      "Happy 22nd Birthday, my love. ♡",
+      "Happy 22nd Birthday Sanuu, my love. ♡",
       "I wanted to make something a little different for you this year.",
       "These pictures hold so many little moments, smiles, and memories. Some are silly, some are special, and some are the kind of moments I wish I could pause and keep forever.",
       "I hope that whenever you look through them, they remind you of how beautiful your world is, how much there is to love about you, and how many wonderful memories are still waiting for you.",
       "Thank you for being you.",
-      "I hope this year brings you happiness, exciting adventures, beautiful surprises, and all the little things that make your heart feel full.",
+      "I hope following year brings you happiness, exciting adventures, beautiful surprises (with ME), and all the little things that make your heart feel full.",
       "No matter how many photographs I collect, they could never capture everything that makes you special to me.",
       "Happy birthday, Saniya.",
       "I love you. ♡",
     ],
-    closing: "Forever & Always",
+    closing: "Forever & Always Yours Loml, Aaryan",
     buttonText: "One Last Thing...",
   },
 
